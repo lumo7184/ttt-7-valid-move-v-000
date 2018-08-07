@@ -2,24 +2,12 @@
 
 
 # re-define your #position_taken? method here, so that you can use it in the #valid_move? method above.
-def valid_move?(board, index)
-if index.between?(0,8)
-true
-elsif index >= 9
-false
-elsif position_taken?
-false
-else
- true
-end
+def valid_move?(board,position)
+  position.to_i.between?(1,9) and not position_taken?(board, position.to_i - 1)
 end
 
-def position_taken? (board, index)
-if board[index] == "" || board[index] == " "
-   false
- elsif board[index] == nil
- false
- else board[index] == "X" || board[index] == "O"
-   true
- end
+def position_taken?(board,position)
+  return false if [" ", "", nil].include?(board[position])
+  return true if ["X", "O"].include?(board[position])
+  raise "#{board[position]} is not a valid move"
 end
