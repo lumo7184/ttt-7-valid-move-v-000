@@ -7,7 +7,7 @@ end
 # re-define your #position_taken? method here, so that you can use it in the
 
 def position_taken?(board,position)
-  return false if [" ", "", nil].include?(board[position])
-  return true if ["X", "O"].include?(board[position])
+  return false if [position] != ""
+  return true if [position] != ""
   raise "#{board[position]} is not a valid move"
 end
